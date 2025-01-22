@@ -27,6 +27,11 @@ jobs:
         repository: 'skommana04/terraform_mod' 
         path: 'srikanth1'
 
+    - name: Show current directory (pwd)
+      run: |
+        echo "Current directory after checkout:"
+        pwd
+
     - name: Change directory to Development
       run: cd Development
 
