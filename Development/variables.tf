@@ -5,4 +5,4 @@ variable "public_cidr_block" {}
 variable "availability_zone" {}
 variable "private_cidr_block" {}
 
-  
+
