@@ -1,6 +1,6 @@
 provider "aws" {
   region = var.region
-
+  
 }
 
 terraform {
@@ -12,10 +12,18 @@ terraform {
 }
 
 module "vpc" {
-  source             = "../modules/network"
-  cidr_block         = var.cidr_block
-  public_cidr_block  = var.public_cidr_block
-  availability_zone  = var.availability_zone
+  source            = "../modules/network"
+  cidr_block        = var.cidr_block
+  public_cidr_block = var.public_cidr_block
+  availability_zone = var.availability_zone
   private_cidr_block = var.private_cidr_block
 
+}
+
+module "natgateway" {
+  source                = "../modules/natgateway"
+  public_cidr_block  =    module.vpc.public_cidr_block
+  private_cidr_block =    module.vpc.private_cidr_block
+  vpc_id                = module.vpc.vpc_id
+  
 }
