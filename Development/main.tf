@@ -31,11 +31,11 @@ module "natgateway" {
 }
 
 resource "aws_instance" "test_instance" {
-  ami           = "ami-04b4f1a9cf54c11d0"
-  instance_type = "t2.micro"
-  key_name      = "mern-sai"
-  subnet_id     = element(module.vpc.public_subnet_ids, 0)
-  vpc_security_group_ids = module.security_gp.security_group_id
+  ami                    = "ami-04b4f1a9cf54c11d0"
+  instance_type          = "t2.micro"
+  key_name               = "mern-sai"
+  subnet_id              = element(module.vpc.public_subnet_ids, 0)
+  vpc_security_group_ids = [module.security_gp.security_group_id]
   tags = {
     Name = "EC2"
   }
