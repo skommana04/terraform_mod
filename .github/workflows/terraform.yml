@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: 'skommana04/terraform_mod' 
-        path: 'srikanth'
+        path: 'srikanth1'
 
     - name: Change directory to Development
       run: cd terraform_mod/Development
