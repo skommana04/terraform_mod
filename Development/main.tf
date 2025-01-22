@@ -35,7 +35,7 @@ resource "aws_instance" "test_instance" {
   instance_type = "t2.micro"
   key_name      = "mern-sai"
   subnet_id     = element(module.vpc.public_subnet_ids, 0)
-  # vpc_security_group_ids = [aws_security_group.sg.id]
+  vpc_security_group_ids = module.security_gp.security_group_id
   tags = {
     Name = "EC2"
   }
