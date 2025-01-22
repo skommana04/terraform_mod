@@ -11,11 +11,9 @@ resource "aws_vpc" "VPC_medha" {
 resource "aws_subnet" "public_subnet" {
   count = length(var.public_cidr_block)
   vpc_id     = aws_vpc.VPC_medha.id
-  cidr_block = var.public_cidr_block
+  cidr_block = element(var.public_cidr_block, count.index)
   availability_zone = element(var.availability_zone, count.index)
-
-#   public_cidr_block = "10.0.1.0/24"
-  
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "Public_Subnet_${count.index + 1}"
