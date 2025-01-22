@@ -27,30 +27,30 @@ jobs:
         repository: 'skommana04/terraform_mod' 
         path: 'srikanth1'
 
-    - name: Show current directory (pwd)
-      run: |
-        echo "Current directory after checkout:"
-        pwd
+    # - name: Show current directory (pwd)
+    #   run: |
+    #     echo "Current directory after checkout:"
+    #     pwd
 
-    - name: Change directory to Development
-      run: |
-        cd srikanth1/Development
-        ls -l
+    # - name: Change directory to Development
+    #   run: |
+    #     cd srikanth1/Development
+    #     ls -l
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init
+      run: |
+        ls -l  # List files in the directory for debugging
+        terraform init
+      working-directory: srikanth1/Development
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check
+      working-directory: srikanth1/Development      
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -input=false
+      working-directory: srikanth1/Development
 
-      # On push to "main", build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    # - name: Terraform Apply
-    #   if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-    #   run: terraform apply -auto-approve -input=false
