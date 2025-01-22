@@ -31,9 +31,9 @@ module "natgateway" {
 }
 
 resource "aws_instance" "test_instance" {
-  ami           = "ami-0c55b159cbfafe1f0"
+  ami           = "ami-04b4f1a9cf54c11d0"
   instance_type = "t2.micro"
-  key_name      = "ayaansh"
+  key_name      = "mern-sai"
   subnet_id     = element(module.vpc.public_subnet_ids, 0)
   # vpc_security_group_ids = [aws_security_group.sg.id]
   tags = {
